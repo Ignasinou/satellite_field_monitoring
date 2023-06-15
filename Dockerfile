@@ -1,0 +1,19 @@
+FROM python:3.8
+WORKDIR /app
+
+COPY requirements.txt .
+COPY main.py .
+COPY utils.py .
+COPY config.py .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+ENV FIELD_DATE=FIELD_DATE
+ENV CSV_INPUT_FILE=CSV_INPUT_FILE
+ENV DESTINATION_BUCKET=DESTINATION_BUCKET
+ENV AWS_ACCESS_KEY_ID=AWS_ACCESS_KEY_ID
+ENV AWS_SECRET_ACCESS_KEY=AWS_SECRET_ACCESS_KEY
+ENV NASA_API_KEY=NASA_API_KEY
+ENV BASE_URL=BASE_URL
+# Run the script
+CMD [ "python", "main.py" ]
